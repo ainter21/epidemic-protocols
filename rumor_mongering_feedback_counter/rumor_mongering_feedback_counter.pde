@@ -8,7 +8,7 @@ ControlP5 cp5;
 GraphSIR g;
 
 int N  =20;
-int k = 5;
+int k = 2;
 
 
 void setup() {
