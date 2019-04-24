@@ -7,7 +7,7 @@ import epidemic.utils.*;
 ControlP5 cp5;
 GraphSI g;
 
-int N  =500;
+int N  =50;
 
 
 void setup() {
@@ -41,7 +41,7 @@ void draw() {
     Info info = g.receivedInfo(n);
     if (info != null) {
       if (info.type == Type.PULL) {
-        if (info.value < n.value) {
+        if (info.time < n.time) {
           n.sendInfo(info.origin, Type.REPLY);
         }
       } else if (info.type == Type.REPLY) {

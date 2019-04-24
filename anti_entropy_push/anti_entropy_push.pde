@@ -5,14 +5,14 @@ import epidemic.utils.*;
 
 
 ControlP5 cp5;
-Graph g;
+GraphSI g;
 
-int N = 100;
+int N = 50;
 
 void setup() {
   size(1000, 1000);
 
-  g = new Graph(this, N);
+  g = new GraphSI(this, N);
 
   cp5 = new ControlP5(this);
   cp5.addButton("switchEdges").setPosition(100, 50).updateSize();
@@ -40,7 +40,7 @@ void draw() {
     Info info = g.receivedInfo(n);
     if(info != null){
       
-      if(n.value < info.value){
+      if(n.time < info.time){
         n.setValue(info);
       }
     }

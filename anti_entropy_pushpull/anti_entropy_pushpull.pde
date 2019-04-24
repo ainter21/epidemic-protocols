@@ -41,9 +41,9 @@ void draw() {
     Info info = g.receivedInfo(n);
     if (info != null) {
       if (info.type == Type.PUSH_PULL) {
-        if (info.value < n.value) {
+        if (info.time < n.time) {
           n.sendInfo(info.origin, Type.REPLY);
-        }else if(info.value > n.value){
+        }else if(info.time > n.time){
           n.setValue(info);  
         }
       } else if (info.type == Type.REPLY) {
