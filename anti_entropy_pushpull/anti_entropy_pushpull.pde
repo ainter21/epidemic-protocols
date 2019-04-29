@@ -31,7 +31,7 @@ void draw() {
     Node n = g.getNode(i);
     if (n.timer==0) {
       Node p = g.getNode((int) random(0, N));
-      n.sendInfo(p, Type.PUSH_PULL);
+      n.sendInfo(p, Type.PUSHPULL);
       n.resetTimer();
     }
   }
