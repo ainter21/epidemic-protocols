@@ -41,7 +41,7 @@ void draw() {
     if (n.hasReceived()) {
       Info info = n.receivedInfo();
 
-      if (info.type == Type.PUSH_PULL) {
+      if (info.type == Type.PUSHPULL) {
         if (info.timestamp < n.timestamp) {
           n.sendInfo(info.origin, Type.REPLY);
         } else if (info.timestamp > n.timestamp) {
