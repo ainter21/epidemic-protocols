@@ -7,7 +7,7 @@ import epidemic.utils.*;
 ControlP5 cp5;
 GraphSI g;
 
-int N  =50;
+int N  =20;
 
 
 void setup() {
@@ -36,15 +36,16 @@ void draw() {
     }
   }
   for (int i=0; i < N; i++) {
-    
+
     Node n = g.getNode(i);
-    Info info = g.receivedInfo(n);
-    if (info != null) {
+    if (n.hasReceived()) {
+      Info info = n.receivedInfo();
+
       if (info.type == Type.PUSH_PULL) {
-        if (info.time < n.time) {
+        if (info.timestamp < n.timestamp) {
           n.sendInfo(info.origin, Type.REPLY);
-        }else if(info.time > n.time){
-          n.setValue(info);  
+        } else if (info.timestamp > n.timestamp) {
+          n.setValue(info);
         }
       } else if (info.type == Type.REPLY) {
 
@@ -53,6 +54,7 @@ void draw() {
       }
     }
   }
+
 
 
   g.drawGraph();

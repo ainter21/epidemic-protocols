@@ -30,18 +30,21 @@ void draw() {
   for (int i=0; i<N; i++) {
     Node n = g.getNode(i);
     if (n.timer==0) {
+
       Node p = g.getNode((int) random(0, N));
       n.sendInfo(p, Type.PULL);
+
       n.resetTimer();
     }
   }
   for (int i=0; i < N; i++) {
-    
+
     Node n = g.getNode(i);
-    Info info = g.receivedInfo(n);
-    if (info != null) {
+    if (n.hasReceived()) {
+      Info info = n.receivedInfo();
+
       if (info.type == Type.PULL) {
-        if (info.time < n.time) {
+        if (info.timestamp < n.timestamp) {
           n.sendInfo(info.origin, Type.REPLY);
         }
       } else if (info.type == Type.REPLY) {

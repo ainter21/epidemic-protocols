@@ -40,7 +40,7 @@ void draw() {
 
         n.sendInfo(q, Type.PUSH);
         float coin = random(1);
-        println(coin);
+
 
         if (coin < (1.0/n.counter)) {
           n.setRemoved();
@@ -52,9 +52,10 @@ void draw() {
   for (int i=0; i < N; i++) {
 
     Node n = g.getNode(i);
-    Info info = g.receivedInfo(n);
+    if (n.hasReceived()) {
 
-    if (info != null) {
+
+
 
       if (n.status == Status.SUSCEPTIBLE) {
 
@@ -62,7 +63,7 @@ void draw() {
       }
     }
   }
-  println(Values.infoSent);
+
   g.drawGraph();
 
   g.updateTimer();

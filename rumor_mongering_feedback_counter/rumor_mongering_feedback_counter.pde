@@ -42,9 +42,10 @@ void draw() {
   for (int i=0; i < N; i++) {
 
     Node n = g.getNode(i);
-    Info info = g.receivedInfo(n);
+    if (n.hasReceived()) {
+      Info info = n.receivedInfo();
 
-    if (info != null) {
+
       if (info.type == Type.PUSH) {
         n.sendInfo(info.origin, Type.REPLY, n.status);
         if (n.status == Status.SUSCEPTIBLE) {

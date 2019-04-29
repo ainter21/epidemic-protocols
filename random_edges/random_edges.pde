@@ -7,7 +7,7 @@ import epidemic.utils.*;
 ControlP5 cp5;
 GraphLattice g;
 
-int N = 97;
+int N = 200;
 
 
 void setup() {
@@ -39,13 +39,13 @@ void draw() {
   for (int i=0; i < N; i++) {
 
     Node n = g.getNode(i);
-    Info info = g.receivedInfo(n);
-    if (info != null) {
-      
-        if (info.value > n.value) {
-          n.setValue(info);
-        }
-      
+    if (n.hasReceived()) {
+      Info info = n.receivedInfo();
+
+
+      if (info.value > n.value) {
+        n.setValue(info);
+      }
     }
   }
 
@@ -60,7 +60,7 @@ void switchEdges() {
   g.switchEdges();
 }
 
-void addEdge(){
+void addEdge() {
 
   g.addEdge();
 }
