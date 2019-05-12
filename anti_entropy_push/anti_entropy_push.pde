@@ -7,7 +7,7 @@ import epidemic.utils.*;
 ControlP5 cp5;
 GraphSI g;
 
-int N = 16;
+int N = 100;
 
 void setup() {
   size(1000, 1000);

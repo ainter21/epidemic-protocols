@@ -7,7 +7,7 @@ import epidemic.utils.*;
 ControlP5 cp5;
 GraphSIR g;
 
-int N  =100;
+int N  =20;
 int k = 2;
 
 
@@ -17,6 +17,8 @@ void setup() {
 
   g = new GraphSIR(this, N, k);
 
+  Visual.infoType = true;
+  Visual.nodeInfo = true;
   cp5 = new ControlP5(this);
   cp5.addButton("switchEdges").setPosition(100, 50).updateSize();
 }
@@ -34,7 +36,7 @@ void draw() {
       if (n.status==Status.INFECTED) {
 
         Node q = g.getNode((int) random(N));
-        n.sendInfo(q, Type.PUSH, n.status);
+        n.sendInfo(q, Type.PUSH);
       }
       n.resetTimer();
     }

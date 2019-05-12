@@ -15,6 +15,8 @@ void setup() {
   //size(1080, 1030);
 
   g = new GraphSIR(this, N, k);
+  Visual.infoType = true;
+  Visual.nodeInfo = true;
 
   cp5 = new ControlP5(this);
   cp5.addButton("switchEdges").setPosition(100, 50).updateSize();
