@@ -15,10 +15,12 @@ void setup() {
   fullScreen();
   //size(1000, 1000);
 
-  g = new GraphSIR(this, N, k);
 
   Visual.infoType = true;
   Visual.nodeInfo = true;
+  Visual.speed = 9;
+  g = new GraphSIR(this, N, k);
+
   cp5 = new ControlP5(this);
   cp5.addButton("switchEdges").setPosition(100, 50).updateSize();
 }
@@ -49,7 +51,7 @@ void draw() {
 
 
       if (info.type == Type.PUSH) {
-        n.sendInfo(info.origin, Type.REPLY, n.status);
+        n.sendInfo(info.origin, Type.REPLY);
         if (n.status == Status.SUSCEPTIBLE) {
           n.setInfected();
         }

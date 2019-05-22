@@ -56,9 +56,7 @@ void draw() {
     Node n = g.getNode(i);
     if (n.hasReceived()) {
 
-
-
-
+      Info info = n.receivedInfo();
       if (n.status == Status.SUSCEPTIBLE) {
 
         n.setInfected();

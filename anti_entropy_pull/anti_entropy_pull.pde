@@ -16,6 +16,8 @@ void setup() {
   size(1000, 1000);
 
   g = new GraphSI(this, N);
+  Visual.infoType = true;
+  Visual.nodeInfo = true;
 
   //decommenta se hai installato la libreria cp5
   //cp5 = new ControlP5(this);
@@ -29,12 +31,48 @@ void draw() {
   background(255);
 
 
-  //scrivi il codice qui sotto
+  for(int i=0; i < N; i++){
+  
+    Node p = g.getNode(i);
+    
+    if(p.timer == 0){
+    
+      Node q = p.getRandomNeighbor();
+      
+      p.sendInfo(q,Type.PULL);
+      
+      p.resetTimer();
+    }
+  }
+  
+  for(int i=0; i < N; i++){
+  
+    Node p = g.getNode(i);
+    
+    if(p.hasReceived()){
+    
+      Info info = p.receivedInfo();
+      
+      if(info.type == Type.PULL){
+      
+        if(info.timestamp < p.timestamp){
+        
+          p.sendInfo(info.origin, Type.REPLY);
+        }
+      }else if(info.type == Type.REPLY){
+      
+        if(info.timestamp>p.timestamp){
+        
+          p.setValue(info);
+        }
+      }
+    }
+  }
 
 
   g.drawGraph();
 
-  g.updateTimer();
+  //g.updateTimer();
 }
 
 
